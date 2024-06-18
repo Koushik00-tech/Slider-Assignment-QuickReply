@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Slider.scss';
-
+// npx chromatic --project-token=chpt_a1ae2f25fe234a2
 type SliderType = 'Continuous' | 'Discreet';
 type SliderSubtype = 'Single' | 'Range';
 type HandleSize = 'Size_24' | 'Size_32';
