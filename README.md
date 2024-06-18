@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Check out My StoryBook Link: https://66717cd34e7201004e561e44-qerynkuaaf.chromatic.com/?path=/story/components-slider--continuous-single
+
 ## Available Scripts
 
 In the project directory, you can run:
