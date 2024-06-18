@@ -88,51 +88,54 @@ const Slider: React.FC<SliderProps> = ({ type, subtype, numberOfSteps = 10, hand
     };
   }, [isDragging]);
 
-  const handleMouseEnter = () => {
-    // Handle hover state
-  };
-
-  const handleMouseLeave = () => {
-    // Handle leave state
-  };
-
+// Render Hander Method----------
   const renderHandle = () => {
     const handleClass = `slider-handle ${handleSize === 'Size_32' ? 'handle-size-32' : ''}`;
-
-    if (subtype === 'Single') {
-      return (
-        <div
-          className={handleClass}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          onMouseDown={(e) => handleDragStart(e, 0)}
-          onTouchStart={(e) => handleDragStart(e, 0)}
-          style={{ left: `${value as number}%` }}
-        />
-      );
-    } else {
-      return (
-        <>
+  
+    const trackStyle = subtype === 'Single' 
+      ? { width: `${value as number}%` } 
+      : { left: `${(value as [number, number])[0]}%`, right: `${100 - (value as [number, number])[1]}%` }; 
+  
+    return (
+      <>
+        <div className="slider-track" style={trackStyle}></div>
+        
+        {subtype === 'Single' ? (
+          
           <div
             className={handleClass}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
             onMouseDown={(e) => handleDragStart(e, 0)}
             onTouchStart={(e) => handleDragStart(e, 0)}
-            style={{ left: `${(value as [number, number])[0]}%` }}
+            style={{ left: `${value as number}%` }}
           />
-          <div
-            className={handleClass}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            onMouseDown={(e) => handleDragStart(e, 1)}
-            onTouchStart={(e) => handleDragStart(e, 1)}
-            style={{ left: `${(value as [number, number])[1]}%` }}
-          />
-        </>
-      );
-    }
+        ) : (
+          <>
+            <div
+              className={handleClass}
+              onMouseDown={(e) => handleDragStart(e, 0)}
+              onTouchStart={(e) => handleDragStart(e, 0)}
+              style={{ left: `${(value as [number, number])[0]}%` }}
+            />
+            <div
+              className={handleClass}
+              onMouseDown={(e) => handleDragStart(e, 1)}
+              onTouchStart={(e) => handleDragStart(e, 1)}
+              style={{ left: `${(value as [number, number])[1]}%` }}
+            />
+          </>
+        )}
+      </>
+    );
   };
+  
+  return (
+    <div className="slider" ref={sliderRef}>
+      
+      <div className="slider-track"></div>
+      {renderHandle()}
+    </div>
+  );
+  
 
   return (
     <div className="slider" ref={sliderRef}>
