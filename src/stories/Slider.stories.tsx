@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import Slider, { SliderProps } from './slider';
+import Slider, {SliderProps} from '../components/Slider/slider';
 
 // Define a type that can be either a number or a tuple of two numbers
 type SliderValue = number | [number, number];
